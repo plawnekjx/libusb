@@ -319,6 +319,8 @@ struct windows_backend {
 	int (*init)(struct libusb_context *ctx);
 	void (*exit)(struct libusb_context *ctx);
 	int (*get_device_list)(struct libusb_context *ctx); // Refresh ctx device list with devices currently connected to the system and update the `hotplug_status` field of all enumerated devices.
+	int (*get_device_string)(libusb_device* dev,
+		enum libusb_device_string_type string_type, char* data, int length);
 	int (*open)(struct libusb_device_handle *dev_handle);
 	void (*close)(struct libusb_device_handle *dev_handle);
 	int (*get_active_config_descriptor)(struct libusb_device *device,
