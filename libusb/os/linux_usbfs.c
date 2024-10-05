@@ -488,11 +488,8 @@ static int op_get_device_string(struct libusb_device *dev,
 		return LIBUSB_ERROR_IO;
 	}
 	close(fd);
-	while (r && ((buffer[r] == 0) || (buffer[r] == '\n'))) {
-		buffer[r--] = 0;
-	}
-	++r;
-	return r;
+	buffer[r - 1] = '\0';
+	return r - 1;
 }
 
 static int linux_scan_devices(struct libusb_context *ctx)
