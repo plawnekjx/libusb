@@ -940,7 +940,7 @@ test_threaded_submit(UMockdevTestbedFixture * fixture, UNUSED_DATA)
 		}
 	}
 
-	thread = g_thread_new("transfer all", (GThreadFunc) transfer_submit_all_retry, &data);
+	thread = g_thread_new("thread-452", (GThreadFunc) transfer_submit_all_retry, &data);
 
 	while (!data.done)
 		g_assert_cmpint(libusb_handle_events_completed(fixture->ctx, &data.done), ==, 0);
